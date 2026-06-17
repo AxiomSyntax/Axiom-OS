@@ -1,13 +1,18 @@
 {
   "version": 2,
-  "name": "custom-agent-os",
-  "buildCommand": "npm install && npm run build",
-  "outputDirectory": "custom-agent-os/dist",
-  "rootDirectory": "custom-agent-os",
+  "builds": [
+    {
+      "src": "custom-agent-os/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "custom-agent-os/dist"
+      }
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/custom-agent-os/dist/index.html"
     }
   ]
 }
