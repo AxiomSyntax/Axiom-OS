@@ -2,17 +2,13 @@
   "version": 2,
   "builds": [
     {
-      "src": "custom-agent-os/package.json",
+      "src": "package.json",
       "use": "@vercel/static-build",
-      "config": {
-        "distDir": "custom-agent-os/dist"
-      }
+      "config": { "distDir": "dist" }
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/custom-agent-os/dist/index.html"
-    }
+    { "src": "/api/(.*)", "dest": "/api/index.js" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
