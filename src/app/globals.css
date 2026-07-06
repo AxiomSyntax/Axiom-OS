@@ -1,0 +1,817 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Axiom OS palette */
+  --color-axiom-void: var(--axiom-void);
+  --color-axiom-deep: var(--axiom-deep);
+  --color-axiom-panel: var(--axiom-panel);
+  --color-axiom-edge: var(--axiom-edge);
+  --color-axiom-cyan: var(--axiom-cyan);
+  --color-axiom-emerald: var(--axiom-emerald);
+  --color-axiom-amber: var(--axiom-amber);
+  --color-axiom-violet: var(--axiom-violet);
+  --color-axiom-rose: var(--axiom-rose);
+  --color-axiom-ruby: var(--axiom-ruby);
+  --color-axiom-sapphire: var(--axiom-sapphire);
+  --color-axiom-amethyst: var(--axiom-amethyst);
+  --color-axiom-topaz: var(--axiom-topaz);
+  --color-axiom-obsidian: var(--axiom-obsidian);
+  --color-axiom-neon-lime: var(--axiom-neon-lime);
+  --color-axiom-silver: var(--axiom-silver);
+  --color-axiom-indigo: var(--axiom-indigo);
+  --color-axiom-graphite: var(--axiom-graphite);
+  --color-axiom-navy: var(--axiom-navy);
+  --color-axiom-text: var(--axiom-text);
+  --color-axiom-dim: var(--axiom-dim);
+  --color-axiom-custom: var(--axiom-custom);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Axiom OS deep-space palette (forced dark) */
+  --axiom-void: oklch(0.10 0.02 260);
+  --axiom-deep: oklch(0.14 0.03 260);
+  --axiom-panel: oklch(0.18 0.035 260);
+  --axiom-edge: oklch(0.28 0.04 260);
+  --axiom-cyan: oklch(0.78 0.13 195);
+  --axiom-emerald: oklch(0.74 0.16 165);
+  --axiom-amber: oklch(0.80 0.15 75);
+  --axiom-violet: oklch(0.65 0.18 305);
+  --axiom-rose: oklch(0.68 0.20 15);
+  --axiom-ruby: oklch(0.65 0.22 10);
+  --axiom-sapphire: oklch(0.60 0.18 265);
+  --axiom-amethyst: oklch(0.62 0.20 300);
+  --axiom-topaz: oklch(0.75 0.14 200);
+  --axiom-obsidian: oklch(0.28 0.03 260);
+  --axiom-neon-lime: oklch(0.78 0.20 135);
+  --axiom-silver: oklch(0.72 0.02 260);
+  --axiom-indigo: oklch(0.55 0.18 270);
+  --axiom-graphite: oklch(0.38 0.02 250);
+  --axiom-navy: oklch(0.45 0.13 260);
+  --axiom-text: oklch(0.96 0.01 240);
+  --axiom-dim: oklch(0.62 0.03 260);
+  --axiom-custom: #00f2fe;
+  --custom_accent_hex: #00f2fe;
+
+  --background: var(--axiom-void);
+  --foreground: var(--axiom-text);
+  --card: var(--axiom-panel);
+  --card-foreground: var(--axiom-text);
+  --popover: var(--axiom-panel);
+  --popover-foreground: var(--axiom-text);
+  --primary: var(--axiom-cyan);
+  --primary-foreground: oklch(0.12 0.02 260);
+  --secondary: oklch(0.22 0.03 260);
+  --secondary-foreground: var(--axiom-text);
+  --muted: oklch(0.22 0.03 260);
+  --muted-foreground: var(--axiom-dim);
+  --accent: oklch(0.28 0.05 280);
+  --accent-foreground: var(--axiom-text);
+  --destructive: oklch(0.68 0.22 18);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: var(--axiom-cyan);
+  --chart-1: var(--axiom-cyan);
+  --chart-2: var(--axiom-emerald);
+  --chart-3: var(--axiom-amber);
+  --chart-4: var(--axiom-violet);
+  --chart-5: var(--axiom-rose);
+  --sidebar: var(--axiom-deep);
+  --sidebar-foreground: var(--axiom-text);
+  --sidebar-primary: var(--axiom-cyan);
+  --sidebar-primary-foreground: oklch(0.12 0.02 260);
+  --sidebar-accent: var(--axiom-panel);
+  --sidebar-accent-foreground: var(--axiom-text);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: var(--axiom-cyan);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11";
+  }
+}
+
+/* Axiom OS custom utilities */
+@layer utilities {
+  .axiom-grid-bg {
+    background-image:
+      linear-gradient(rgba(120, 220, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120, 220, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .axiom-glow-cyan {
+    box-shadow: 0 0 24px -4px rgba(120, 220, 255, 0.4), inset 0 0 0 1px rgba(120, 220, 255, 0.2);
+  }
+  .axiom-glow-emerald {
+    box-shadow: 0 0 24px -4px rgba(80, 220, 180, 0.4), inset 0 0 0 1px rgba(80, 220, 180, 0.2);
+  }
+  .axiom-glow-violet {
+    box-shadow: 0 0 24px -4px rgba(180, 130, 255, 0.4), inset 0 0 0 1px rgba(180, 130, 255, 0.2);
+  }
+  .axiom-glow-amber {
+    box-shadow: 0 0 24px -4px rgba(255, 200, 90, 0.4), inset 0 0 0 1px rgba(255, 200, 90, 0.2);
+  }
+  .axiom-glow-rose {
+    box-shadow: 0 0 24px -4px rgba(255, 130, 140, 0.4), inset 0 0 0 1px rgba(255, 130, 140, 0.2);
+  }
+  .axiom-glow-ruby {
+    box-shadow: 0 0 24px -4px rgba(225, 29, 72, 0.4), inset 0 0 0 1px rgba(225, 29, 72, 0.2);
+  }
+  .axiom-glow-sapphire {
+    box-shadow: 0 0 24px -4px rgba(37, 99, 235, 0.4), inset 0 0 0 1px rgba(37, 99, 235, 0.2);
+  }
+  .axiom-glow-amethyst {
+    box-shadow: 0 0 24px -4px rgba(168, 85, 247, 0.4), inset 0 0 0 1px rgba(168, 85, 247, 0.2);
+  }
+  .axiom-glow-topaz {
+    box-shadow: 0 0 24px -4px rgba(6, 182, 212, 0.4), inset 0 0 0 1px rgba(6, 182, 212, 0.2);
+  }
+  .axiom-glow-neon-lime {
+    box-shadow: 0 0 24px -4px rgba(132, 204, 22, 0.4), inset 0 0 0 1px rgba(132, 204, 22, 0.2);
+  }
+  .axiom-text-glow {
+    text-shadow: 0 0 12px rgba(120, 220, 255, 0.6);
+  }
+  .axiom-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .axiom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .axiom-scroll::-webkit-scrollbar-thumb {
+    background: rgba(120, 220, 255, 0.2);
+    border-radius: 3px;
+  }
+  .axiom-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(120, 220, 255, 0.4);
+  }
+  .axiom-no-select {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+/* Custom animations */
+@keyframes axiom-pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+.axiom-pulse-ring {
+  animation: axiom-pulse-ring 2.4s ease-in-out infinite;
+}
+
+@keyframes axiom-boot-bar {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.axiom-boot-bar {
+  animation: axiom-boot-bar 1.6s ease-in-out infinite;
+}
+
+@keyframes axiom-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.axiom-float {
+  animation: axiom-float 4s ease-in-out infinite;
+}
+
+@keyframes axiom-scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+.axiom-scan {
+  animation: axiom-scan 3s linear infinite;
+}
+
+@keyframes axiom-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.axiom-blink {
+  animation: axiom-blink 1.1s steps(1) infinite;
+}
+
+/* ── Print / Export-to-PDF scoping ─────────────────────────────────────────
+   When the editor marks itself with the `print-active` class on <body>,
+   everything outside `.print-target` is hidden, and `.print-target` itself
+   is promoted to a clean white-on-black canvas so the saved PDF contains
+   ONLY the rendered markdown of the active note. */
+@media print {
+  body.print-active > *:not(#axiom-print-container) {
+    display: none !important;
+  }
+  body.print-active #axiom-print-container,
+  body.print-active #axiom-print-container * {
+    visibility: visible;
+  }
+  body.print-active #axiom-print-container {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9999 !important;
+    background: #ffffff !important;
+    color: #0a0a0a !important;
+    padding: 32px !important;
+    overflow: visible !important;
+  }
+  body.print-active #axiom-print-container h1,
+  body.print-active #axiom-print-container h2,
+  body.print-active #axiom-print-container h3,
+  body.print-active #axiom-print-container h4,
+  body.print-active #axiom-print-container h5,
+  body.print-active #axiom-print-container h6 {
+    color: #0a0a0a !important;
+    page-break-after: avoid;
+  }
+  body.print-active #axiom-print-container a {
+    color: #1e40af !important;
+    text-decoration: underline;
+  }
+  body.print-active #axiom-print-container code {
+    background: #f3f4f6 !important;
+    color: #be185d !important;
+    border: 1px solid #d1d5db;
+  }
+  body.print-active #axiom-print-container pre {
+    background: #f9fafb !important;
+    color: #111827 !important;
+    border: 1px solid #d1d5db;
+    padding: 12px;
+    page-break-inside: avoid;
+  }
+  body.print-active #axiom-print-container blockquote {
+    border-left: 4px solid #6b7280 !important;
+    color: #374151 !important;
+    padding-left: 12px;
+  }
+  body.print-active #axiom-print-container hr {
+    border-top: 1px solid #9ca3af !important;
+  }
+  body.print-active .no-print {
+    display: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Axiom OS — Effect Enhancements
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* 1 ── Scan-line overlay (subtle CRT monitor effect) ──────────────────────── */
+.axiom-scanlines {
+  position: relative;
+}
+.axiom-scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: repeating-linear-gradient(
+    0deg,
+    oklch(1 0 0 / 0.025) 0px,
+    oklch(1 0 0 / 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* 2 ── HUD corner bracket decoration ─────────────────────────────────────── */
+.axiom-hud-frame {
+  position: relative;
+}
+.axiom-hud-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  z-index: 1;
+  /* Eight gradient layers = four L-shaped corner brackets (┌ ┐ └ ┘) */
+  background:
+    /* ┌ top-left */
+    linear-gradient(var(--axiom-cyan), var(--axiom-cyan))
+      no-repeat 0 0 / 14px 1.5px,
+    linear-gradient(var(--axiom-cyan), var(--axiom-cyan))
+      no-repeat 0 0 / 1.5px 14px,
+    /* ┐ top-right */
+    linear-gradient(var(--axiom-cyan), var(--axiom-cyan))
+      no-repeat 100% 0 / 14px 1.5px,
+    linear-gradient(var(--axiom-cyan), var(--axiom-cyan))
+      no-repeat 100% 0 / 1.5px 14px,
+    /* └ bottom-left */
+    linear-gradient(var(--axiom-cyan), var(--axiom-cyan))
+      no-repeat 0 100% / 14px 1.5px,
+    linear-gradient(var(--axiom-cyan), var(--axiom-cyan))
+      no-repeat 0 100% / 1.5px 14px,
+    /* ┘ bottom-right */
+    linear-gradient(var(--axiom-cyan), var(--axiom-cyan))
+      no-repeat 100% 100% / 14px 1.5px,
+    linear-gradient(var(--axiom-cyan), var(--axiom-cyan))
+      no-repeat 100% 100% / 1.5px 14px;
+}
+
+/* 3 ── Glow-pulse animation (opacity-only for GPU perf) ──────────────────── */
+@keyframes axiom-glow-pulse {
+  0%, 100% { opacity: 0.25; }
+  50%      { opacity: 1; }
+}
+.axiom-glow-pulse {
+  position: relative;
+}
+.axiom-glow-pulse::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  background: oklch(0.78 0.13 195 / 0.45);
+  filter: blur(16px);
+  opacity: 0.25;
+  animation: axiom-glow-pulse 2.4s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 4 ── Neon text effect ──────────────────────────────────────────────────── */
+.axiom-neon-text {
+  color: oklch(0.92 0.08 195);
+  text-shadow:
+    0 0 4px  oklch(0.78 0.13 195 / 0.8),
+    0 0 14px oklch(0.78 0.13 195 / 0.45),
+    0 0 36px oklch(0.78 0.13 195 / 0.2);
+}
+
+/* 5 ── Enhanced scrollbar (track colour + thinner thumb) ───────────────────
+      Unlayered rules override the @layer utilities definitions above.      */
+.axiom-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.axiom-scroll::-webkit-scrollbar-track {
+  background: oklch(0.14 0.03 260 / 0.3);
+  border-radius: 2px;
+}
+
+/* 6 ── Data-grid background (finer grid for chart containers) ────────────── */
+.axiom-data-grid {
+  background-image:
+    linear-gradient(rgba(120, 220, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 220, 255, 0.045) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* 7 ── Gradient border (background-clip technique, no pseudo-element) ────── */
+.axiom-gradient-border {
+  position: relative;
+  background:
+    linear-gradient(var(--axiom-panel), var(--axiom-panel)) padding-box,
+    linear-gradient(135deg, var(--axiom-cyan), var(--axiom-violet), var(--axiom-rose)) border-box;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius);
+}
+
+/* 8 ── Typing-dots animation (staggered bounce) ──────────────────────────── */
+@keyframes axiom-typing-dot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+.axiom-typing-dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--axiom-cyan);
+  animation: axiom-typing-dot 1.4s ease-in-out infinite;
+}
+.axiom-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.axiom-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* 9 ── Hover-lift effect ─────────────────────────────────────────────────── */
+.axiom-hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.axiom-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px oklch(0 0 0 / 0.5);
+}
+
+/* 10 ─ Status-indicator pulse (smaller, faster variant of axiom-pulse-ring) */
+.axiom-pulse-ring--status {
+  animation: axiom-pulse-ring 1.2s ease-in-out infinite;
+}
+.axiom-pulse-ring--status::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  animation: axiom-status-ring-outer 1.2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes axiom-status-ring-outer {
+  0%   { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* 11 ─ Connector line pulse (workflow step connectors) */
+.axiom-connector-pulse {
+  animation: axiom-connector-pulse 1.5s ease-in-out infinite;
+}
+@keyframes axiom-connector-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Axiom OS — v0.3 Cyberpunk Multitasking Layer
+   Tab bar + MODELS sidebar + keep-alive stack visual treatments.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* 12 ─ App tab bar — cyberpunk neon edge + scanline accent */
+.axiom-tab-bar {
+  background:
+    linear-gradient(180deg, oklch(0.16 0.035 260 / 0.95), oklch(0.13 0.03 260 / 0.9)),
+    repeating-linear-gradient(
+      90deg,
+      oklch(0.78 0.13 195 / 0.04) 0px,
+      oklch(0.78 0.13 195 / 0.04) 1px,
+      transparent 1px,
+      transparent 48px
+    );
+  border-bottom: 1px solid oklch(0.78 0.13 195 / 0.18);
+  box-shadow:
+    inset 0 -1px 0 0 oklch(0.78 0.13 195 / 0.08),
+    0 1px 12px -6px oklch(0 0 0 / 0.6);
+}
+
+/* 13 ─ Active app tab — neon cyan underglow + top edge accent */
+.axiom-tab-active {
+  position: relative;
+  background:
+    linear-gradient(180deg, oklch(0.22 0.04 260 / 0.8), oklch(0.18 0.035 260 / 0.9));
+  box-shadow:
+    inset 1px 0 0 0 oklch(0.78 0.13 195 / 0.15),
+    inset -1px 0 0 0 oklch(0.78 0.13 195 / 0.15),
+    0 -2px 8px -4px oklch(0.78 0.13 195 / 0.4);
+}
+.axiom-tab-active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(0.78 0.13 195 / 0.8),
+    oklch(0.78 0.13 195 / 0.4),
+    transparent
+  );
+  filter: blur(0.5px);
+}
+
+/* 14 ─ MODELS group header — circuit-trace divider accent */
+.axiom-models-header {
+  position: relative;
+}
+.axiom-models-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    oklch(0.78 0.13 195 / 0.35),
+    transparent 60%
+  );
+  opacity: 0.6;
+}
+
+/* 15 ─ App nav item (MODELS) — left-edge neon rail when active */
+.axiom-app-nav-active {
+  position: relative;
+}
+.axiom-app-nav-active::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 18px;
+  border-radius: 2px;
+  background: var(--axiom-cyan);
+  box-shadow:
+    0 0 8px oklch(0.78 0.13 195 / 0.8),
+    0 0 16px oklch(0.78 0.13 195 / 0.4);
+}
+
+/* 16 ─ Keep-alive stack frame — subtle inner border + corner ticks */
+.axiom-keepalive-frame {
+  position: relative;
+}
+.axiom-keepalive-frame::before,
+.axiom-keepalive-frame::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+.axiom-keepalive-frame::before {
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-top: 1.5px solid oklch(0.78 0.13 195 / 0.5);
+  border-left: 1.5px solid oklch(0.78 0.13 195 / 0.5);
+}
+.axiom-keepalive-frame::after {
+  bottom: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  border-bottom: 1.5px solid oklch(0.78 0.13 195 / 0.5);
+  border-right: 1.5px solid oklch(0.78 0.13 195 / 0.5);
+}
+
+/* 17 ─ Live-tab pulse — sharper cyberpunk blink for the "live tab" badge */
+@keyframes axiom-live-blink {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px oklch(0.74 0.16 165 / 0.8); }
+  50%      { opacity: 0.5; box-shadow: 0 0 2px oklch(0.74 0.16 165 / 0.3); }
+}
+.axiom-live-blink {
+  animation: axiom-live-blink 1.6s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Safelist Utilities — Dynamic Color Classes (Tailwind v4 purge fix)
+   ═══════════════════════════════════════════════════════════════════════════
+   Tailwind v4's JIT scanner only generates utilities for class names that
+   appear as LITERAL strings in source files. When classes are constructed
+   dynamically (e.g. `bg-${engine.color}`), the scanner can't detect them and
+   the utilities get purged. The Safelist.tsx component helps, but isn't 100%
+   reliable across rebuilds. These explicit @layer utilities definitions
+   GUARANTEE the classes exist in the final CSS bundle regardless of scanner
+   behavior. Covers: sapphire, silver, ruby, topaz, obsidian, neon-lime
+   (cyan/emerald/amber/violet/rose/amethyst already appear as literals). */
+
+@layer utilities {
+  /* ── axiom-sapphire (Solid-Blue — Codex engine) ── */
+  .bg-axiom-sapphire { background-color: var(--axiom-sapphire); }
+  .text-axiom-sapphire { color: var(--axiom-sapphire); }
+  .border-axiom-sapphire { border-color: var(--axiom-sapphire); }
+  .bg-axiom-sapphire\/10 { background-color: oklch(0.60 0.18 265 / 0.10); }
+  .bg-axiom-sapphire\/15 { background-color: oklch(0.60 0.18 265 / 0.15); }
+  .bg-axiom-sapphire\/20 { background-color: oklch(0.60 0.18 265 / 0.20); }
+  .bg-axiom-sapphire\/30 { background-color: oklch(0.60 0.18 265 / 0.30); }
+  .bg-axiom-sapphire\/40 { background-color: oklch(0.60 0.18 265 / 0.40); }
+  .bg-axiom-sapphire\/50 { background-color: oklch(0.60 0.18 265 / 0.50); }
+  .bg-axiom-sapphire\/60 { background-color: oklch(0.60 0.18 265 / 0.60); }
+  .text-axiom-sapphire\/30 { color: oklch(0.60 0.18 265 / 0.30); }
+  .text-axiom-sapphire\/40 { color: oklch(0.60 0.18 265 / 0.40); }
+  .text-axiom-sapphire\/50 { color: oklch(0.60 0.18 265 / 0.50); }
+  .text-axiom-sapphire\/60 { color: oklch(0.60 0.18 265 / 0.60); }
+  .text-axiom-sapphire\/70 { color: oklch(0.60 0.18 265 / 0.70); }
+  .text-axiom-sapphire\/80 { color: oklch(0.60 0.18 265 / 0.80); }
+  .text-axiom-sapphire\/90 { color: oklch(0.60 0.18 265 / 0.90); }
+  .border-axiom-sapphire\/30 { border-color: oklch(0.60 0.18 265 / 0.30); }
+  .border-axiom-sapphire\/40 { border-color: oklch(0.60 0.18 265 / 0.40); }
+  .border-axiom-sapphire\/50 { border-color: oklch(0.60 0.18 265 / 0.50); }
+
+  /* ── axiom-silver (Metallic Silver — FreeClaude Code engine) ── */
+  .bg-axiom-silver { background-color: var(--axiom-silver); }
+  .text-axiom-silver { color: var(--axiom-silver); }
+  .border-axiom-silver { border-color: var(--axiom-silver); }
+  .bg-axiom-silver\/10 { background-color: oklch(0.72 0.02 260 / 0.10); }
+  .bg-axiom-silver\/15 { background-color: oklch(0.72 0.02 260 / 0.15); }
+  .bg-axiom-silver\/20 { background-color: oklch(0.72 0.02 260 / 0.20); }
+  .bg-axiom-silver\/30 { background-color: oklch(0.72 0.02 260 / 0.30); }
+  .bg-axiom-silver\/40 { background-color: oklch(0.72 0.02 260 / 0.40); }
+  .bg-axiom-silver\/50 { background-color: oklch(0.72 0.02 260 / 0.50); }
+  .bg-axiom-silver\/60 { background-color: oklch(0.72 0.02 260 / 0.60); }
+  .text-axiom-silver\/30 { color: oklch(0.72 0.02 260 / 0.30); }
+  .text-axiom-silver\/40 { color: oklch(0.72 0.02 260 / 0.40); }
+  .text-axiom-silver\/50 { color: oklch(0.72 0.02 260 / 0.50); }
+  .text-axiom-silver\/60 { color: oklch(0.72 0.02 260 / 0.60); }
+  .text-axiom-silver\/70 { color: oklch(0.72 0.02 260 / 0.70); }
+  .text-axiom-silver\/80 { color: oklch(0.72 0.02 260 / 0.80); }
+  .text-axiom-silver\/90 { color: oklch(0.72 0.02 260 / 0.90); }
+  .border-axiom-silver\/30 { border-color: oklch(0.72 0.02 260 / 0.30); }
+  .border-axiom-silver\/40 { border-color: oklch(0.72 0.02 260 / 0.40); }
+  .border-axiom-silver\/50 { border-color: oklch(0.72 0.02 260 / 0.50); }
+
+  /* ── axiom-ruby (Deep Red) ── */
+  .bg-axiom-ruby { background-color: var(--axiom-ruby); }
+  .text-axiom-ruby { color: var(--axiom-ruby); }
+  .border-axiom-ruby { border-color: var(--axiom-ruby); }
+  .bg-axiom-ruby\/10 { background-color: oklch(0.65 0.22 10 / 0.10); }
+  .bg-axiom-ruby\/15 { background-color: oklch(0.65 0.22 10 / 0.15); }
+  .bg-axiom-ruby\/20 { background-color: oklch(0.65 0.22 10 / 0.20); }
+  .bg-axiom-ruby\/30 { background-color: oklch(0.65 0.22 10 / 0.30); }
+  .bg-axiom-ruby\/40 { background-color: oklch(0.65 0.22 10 / 0.40); }
+  .bg-axiom-ruby\/50 { background-color: oklch(0.65 0.22 10 / 0.50); }
+  .bg-axiom-ruby\/60 { background-color: oklch(0.65 0.22 10 / 0.60); }
+  .text-axiom-ruby\/30 { color: oklch(0.65 0.22 10 / 0.30); }
+  .text-axiom-ruby\/40 { color: oklch(0.65 0.22 10 / 0.40); }
+  .text-axiom-ruby\/50 { color: oklch(0.65 0.22 10 / 0.50); }
+  .text-axiom-ruby\/60 { color: oklch(0.65 0.22 10 / 0.60); }
+  .text-axiom-ruby\/70 { color: oklch(0.65 0.22 10 / 0.70); }
+  .text-axiom-ruby\/80 { color: oklch(0.65 0.22 10 / 0.80); }
+  .text-axiom-ruby\/90 { color: oklch(0.65 0.22 10 / 0.90); }
+  .border-axiom-ruby\/30 { border-color: oklch(0.65 0.22 10 / 0.30); }
+  .border-axiom-ruby\/40 { border-color: oklch(0.65 0.22 10 / 0.40); }
+  .border-axiom-ruby\/50 { border-color: oklch(0.65 0.22 10 / 0.50); }
+
+  /* ── axiom-topaz (Teal-Cyan) ── */
+  .bg-axiom-topaz { background-color: var(--axiom-topaz); }
+  .text-axiom-topaz { color: var(--axiom-topaz); }
+  .border-axiom-topaz { border-color: var(--axiom-topaz); }
+  .bg-axiom-topaz\/10 { background-color: oklch(0.75 0.14 200 / 0.10); }
+  .bg-axiom-topaz\/15 { background-color: oklch(0.75 0.14 200 / 0.15); }
+  .bg-axiom-topaz\/20 { background-color: oklch(0.75 0.14 200 / 0.20); }
+  .bg-axiom-topaz\/30 { background-color: oklch(0.75 0.14 200 / 0.30); }
+  .bg-axiom-topaz\/40 { background-color: oklch(0.75 0.14 200 / 0.40); }
+  .bg-axiom-topaz\/50 { background-color: oklch(0.75 0.14 200 / 0.50); }
+  .bg-axiom-topaz\/60 { background-color: oklch(0.75 0.14 200 / 0.60); }
+  .text-axiom-topaz\/30 { color: oklch(0.75 0.14 200 / 0.30); }
+  .text-axiom-topaz\/40 { color: oklch(0.75 0.14 200 / 0.40); }
+  .text-axiom-topaz\/50 { color: oklch(0.75 0.14 200 / 0.50); }
+  .text-axiom-topaz\/60 { color: oklch(0.75 0.14 200 / 0.60); }
+  .text-axiom-topaz\/70 { color: oklch(0.75 0.14 200 / 0.70); }
+  .text-axiom-topaz\/80 { color: oklch(0.75 0.14 200 / 0.80); }
+  .text-axiom-topaz\/90 { color: oklch(0.75 0.14 200 / 0.90); }
+  .border-axiom-topaz\/30 { border-color: oklch(0.75 0.14 200 / 0.30); }
+  .border-axiom-topaz\/40 { border-color: oklch(0.75 0.14 200 / 0.40); }
+  .border-axiom-topaz\/50 { border-color: oklch(0.75 0.14 200 / 0.50); }
+
+  /* ── axiom-obsidian (Dark Slate) ── */
+  .bg-axiom-obsidian { background-color: var(--axiom-obsidian); }
+  .text-axiom-obsidian { color: var(--axiom-obsidian); }
+  .border-axiom-obsidian { border-color: var(--axiom-obsidian); }
+  .bg-axiom-obsidian\/10 { background-color: oklch(0.28 0.03 260 / 0.10); }
+  .bg-axiom-obsidian\/15 { background-color: oklch(0.28 0.03 260 / 0.15); }
+  .bg-axiom-obsidian\/20 { background-color: oklch(0.28 0.03 260 / 0.20); }
+  .bg-axiom-obsidian\/30 { background-color: oklch(0.28 0.03 260 / 0.30); }
+  .bg-axiom-obsidian\/40 { background-color: oklch(0.28 0.03 260 / 0.40); }
+  .bg-axiom-obsidian\/50 { background-color: oklch(0.28 0.03 260 / 0.50); }
+  .bg-axiom-obsidian\/60 { background-color: oklch(0.28 0.03 260 / 0.60); }
+  .text-axiom-obsidian\/30 { color: oklch(0.28 0.03 260 / 0.30); }
+  .text-axiom-obsidian\/40 { color: oklch(0.28 0.03 260 / 0.40); }
+  .text-axiom-obsidian\/50 { color: oklch(0.28 0.03 260 / 0.50); }
+  .text-axiom-obsidian\/60 { color: oklch(0.28 0.03 260 / 0.60); }
+  .text-axiom-obsidian\/70 { color: oklch(0.28 0.03 260 / 0.70); }
+  .text-axiom-obsidian\/80 { color: oklch(0.28 0.03 260 / 0.80); }
+  .text-axiom-obsidian\/90 { color: oklch(0.28 0.03 260 / 0.90); }
+  .border-axiom-obsidian\/30 { border-color: oklch(0.28 0.03 260 / 0.30); }
+  .border-axiom-obsidian\/40 { border-color: oklch(0.28 0.03 260 / 0.40); }
+  .border-axiom-obsidian\/50 { border-color: oklch(0.28 0.03 260 / 0.50); }
+
+  /* ── axiom-neon-lime (Electric Green) ── */
+  .bg-axiom-neon-lime { background-color: var(--axiom-neon-lime); }
+  .text-axiom-neon-lime { color: var(--axiom-neon-lime); }
+  .border-axiom-neon-lime { border-color: var(--axiom-neon-lime); }
+  .bg-axiom-neon-lime\/10 { background-color: oklch(0.78 0.20 135 / 0.10); }
+  .bg-axiom-neon-lime\/15 { background-color: oklch(0.78 0.20 135 / 0.15); }
+  .bg-axiom-neon-lime\/20 { background-color: oklch(0.78 0.20 135 / 0.20); }
+  .bg-axiom-neon-lime\/30 { background-color: oklch(0.78 0.20 135 / 0.30); }
+  .bg-axiom-neon-lime\/40 { background-color: oklch(0.78 0.20 135 / 0.40); }
+  .bg-axiom-neon-lime\/50 { background-color: oklch(0.78 0.20 135 / 0.50); }
+  .bg-axiom-neon-lime\/60 { background-color: oklch(0.78 0.20 135 / 0.60); }
+  .text-axiom-neon-lime\/30 { color: oklch(0.78 0.20 135 / 0.30); }
+  .text-axiom-neon-lime\/40 { color: oklch(0.78 0.20 135 / 0.40); }
+  .text-axiom-neon-lime\/50 { color: oklch(0.78 0.20 135 / 0.50); }
+  .text-axiom-neon-lime\/60 { color: oklch(0.78 0.20 135 / 0.60); }
+  .text-axiom-neon-lime\/70 { color: oklch(0.78 0.20 135 / 0.70); }
+  .text-axiom-neon-lime\/80 { color: oklch(0.78 0.20 135 / 0.80); }
+  .text-axiom-neon-lime\/90 { color: oklch(0.78 0.20 135 / 0.90); }
+  .border-axiom-neon-lime\/30 { border-color: oklch(0.78 0.20 135 / 0.30); }
+  .border-axiom-neon-lime\/40 { border-color: oklch(0.78 0.20 135 / 0.40); }
+  .border-axiom-neon-lime\/50 { border-color: oklch(0.78 0.20 135 / 0.50); }
+
+  /* ── axiom-indigo (Kimi — Moonshot AI) ── */
+  .bg-axiom-indigo { background-color: var(--axiom-indigo); }
+  .text-axiom-indigo { color: var(--axiom-indigo); }
+  .border-axiom-indigo { border-color: var(--axiom-indigo); }
+  .bg-axiom-indigo\/10 { background-color: oklch(0.55 0.18 270 / 0.10); }
+  .bg-axiom-indigo\/15 { background-color: oklch(0.55 0.18 270 / 0.15); }
+  .bg-axiom-indigo\/20 { background-color: oklch(0.55 0.18 270 / 0.20); }
+  .bg-axiom-indigo\/30 { background-color: oklch(0.55 0.18 270 / 0.30); }
+  .bg-axiom-indigo\/40 { background-color: oklch(0.55 0.18 270 / 0.40); }
+  .bg-axiom-indigo\/50 { background-color: oklch(0.55 0.18 270 / 0.50); }
+  .bg-axiom-indigo\/60 { background-color: oklch(0.55 0.18 270 / 0.60); }
+  .text-axiom-indigo\/30 { color: oklch(0.55 0.18 270 / 0.30); }
+  .text-axiom-indigo\/40 { color: oklch(0.55 0.18 270 / 0.40); }
+  .text-axiom-indigo\/50 { color: oklch(0.55 0.18 270 / 0.50); }
+  .text-axiom-indigo\/60 { color: oklch(0.55 0.18 270 / 0.60); }
+  .text-axiom-indigo\/70 { color: oklch(0.55 0.18 270 / 0.70); }
+  .text-axiom-indigo\/80 { color: oklch(0.55 0.18 270 / 0.80); }
+  .text-axiom-indigo\/90 { color: oklch(0.55 0.18 270 / 0.90); }
+  .border-axiom-indigo\/30 { border-color: oklch(0.55 0.18 270 / 0.30); }
+  .border-axiom-indigo\/40 { border-color: oklch(0.55 0.18 270 / 0.40); }
+  .border-axiom-indigo\/50 { border-color: oklch(0.55 0.18 270 / 0.50); }
+
+  /* ── axiom-graphite (Dark Neutral Gray — SiliconFlow) ── */
+  .bg-axiom-graphite { background-color: var(--axiom-graphite); }
+  .text-axiom-graphite { color: var(--axiom-graphite); }
+  .border-axiom-graphite { border-color: var(--axiom-graphite); }
+  .bg-axiom-graphite\/10 { background-color: oklch(0.38 0.02 250 / 0.10); }
+  .bg-axiom-graphite\/15 { background-color: oklch(0.38 0.02 250 / 0.15); }
+  .bg-axiom-graphite\/20 { background-color: oklch(0.38 0.02 250 / 0.20); }
+  .bg-axiom-graphite\/30 { background-color: oklch(0.38 0.02 250 / 0.30); }
+  .bg-axiom-graphite\/40 { background-color: oklch(0.38 0.02 250 / 0.40); }
+  .bg-axiom-graphite\/50 { background-color: oklch(0.38 0.02 250 / 0.50); }
+  .bg-axiom-graphite\/60 { background-color: oklch(0.38 0.02 250 / 0.60); }
+  .text-axiom-graphite\/30 { color: oklch(0.38 0.02 250 / 0.30); }
+  .text-axiom-graphite\/40 { color: oklch(0.38 0.02 250 / 0.40); }
+  .text-axiom-graphite\/50 { color: oklch(0.38 0.02 250 / 0.50); }
+  .text-axiom-graphite\/60 { color: oklch(0.38 0.02 250 / 0.60); }
+  .text-axiom-graphite\/70 { color: oklch(0.38 0.02 250 / 0.70); }
+  .text-axiom-graphite\/80 { color: oklch(0.38 0.02 250 / 0.80); }
+  .text-axiom-graphite\/90 { color: oklch(0.38 0.02 250 / 0.90); }
+  .border-axiom-graphite\/30 { border-color: oklch(0.38 0.02 250 / 0.30); }
+  .border-axiom-graphite\/40 { border-color: oklch(0.38 0.02 250 / 0.40); }
+  .border-axiom-graphite\/50 { border-color: oklch(0.38 0.02 250 / 0.50); }
+
+  /* ── axiom-navy (Deep Blue/Navy — DeepSeek) ── */
+  .bg-axiom-navy { background-color: var(--axiom-navy); }
+  .text-axiom-navy { color: var(--axiom-navy); }
+  .border-axiom-navy { border-color: var(--axiom-navy); }
+  .bg-axiom-navy\/10 { background-color: oklch(0.45 0.13 260 / 0.10); }
+  .bg-axiom-navy\/15 { background-color: oklch(0.45 0.13 260 / 0.15); }
+  .bg-axiom-navy\/20 { background-color: oklch(0.45 0.13 260 / 0.20); }
+  .bg-axiom-navy\/30 { background-color: oklch(0.45 0.13 260 / 0.30); }
+  .bg-axiom-navy\/40 { background-color: oklch(0.45 0.13 260 / 0.40); }
+  .bg-axiom-navy\/50 { background-color: oklch(0.45 0.13 260 / 0.50); }
+  .bg-axiom-navy\/60 { background-color: oklch(0.45 0.13 260 / 0.60); }
+  .text-axiom-navy\/30 { color: oklch(0.45 0.13 260 / 0.30); }
+  .text-axiom-navy\/40 { color: oklch(0.45 0.13 260 / 0.40); }
+  .text-axiom-navy\/50 { color: oklch(0.45 0.13 260 / 0.50); }
+  .text-axiom-navy\/60 { color: oklch(0.45 0.13 260 / 0.60); }
+  .text-axiom-navy\/70 { color: oklch(0.45 0.13 260 / 0.70); }
+  .text-axiom-navy\/80 { color: oklch(0.45 0.13 260 / 0.80); }
+  .text-axiom-navy\/90 { color: oklch(0.45 0.13 260 / 0.90); }
+  .border-axiom-navy\/30 { border-color: oklch(0.45 0.13 260 / 0.30); }
+  .border-axiom-navy\/40 { border-color: oklch(0.45 0.13 260 / 0.40); }
+  .border-axiom-navy\/50 { border-color: oklch(0.45 0.13 260 / 0.50); }
+}
